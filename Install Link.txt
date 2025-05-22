@@ -1,0 +1,4 @@
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org --trusted-host pypi.python.org -r requirements.txt
+
+@Echo off
+start ""/min Python -m streamlit run "C:\Agency Proposa\NoTables.py"
