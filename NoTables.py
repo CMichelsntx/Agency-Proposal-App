@@ -44,6 +44,9 @@ if os.path.exists(logo_path):
 else:
     st.sidebar.error("sidebar_logo.png not found!")
 st.sidebar.title("")  # extend teal below the logo
+# Underwriter selection
+underwriter_options = ["", "Brandy Medders", "Brandy Medders Tower", "Linda Callahan", "Latosha Hope", "Joshua Crawford"]
+underwriter = st.sidebar.selectbox("Select Underwriter", underwriter_options)
 
 import io
 import pdfplumber
@@ -1383,7 +1386,8 @@ def main():
         df_employment = pd.DataFrame(columns=["Aggregate Limit", "Each Claim Limit", "Deductible", "Retroactive Date", "Estimated Total Premium"])
         step += 1; update_progress(step)
     
-    template_path = os.path.join(os.path.dirname(__file__), "Proposal Template.docx")
+    template_filename = f"Proposal Template{(' ' + underwriter) if underwriter else ''}.docx"
+    template_path = os.path.join(os.path.dirname(__file__), template_filename)
     doc = docx.Document(template_path)
     section = doc.sections[0]
     section.header_distance = Pt(60)
@@ -2151,4 +2155,4 @@ def main():
     )
 
 if __name__ == "__main__":
-    main()
+    main()  
